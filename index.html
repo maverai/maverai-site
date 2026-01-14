@@ -1,10 +1,814 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Maverai</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maverai - Electrical Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-secondary: #141414;
+      --border: #2a2a2a;
+      --text-primary: #e5e5e5;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+    }
+
+    .logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 0 1rem;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      border-bottom-color: var(--accent);
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    /* Hero/Resume Header Section */
+    .hero {
+      margin-top: 50px;
+      padding: 3rem 2rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-header {
+      margin-bottom: 3rem;
+    }
+
+    .hero-name {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .contact-info a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-content {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .section-content p {
+      margin-bottom: 1rem;
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Skills Grid */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .skills-list li {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    /* Education/Experience Items */
+    .timeline {
+      list-style: none;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border);
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+    }
+
+    .timeline-header {
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-description {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .timeline-description ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .timeline-description li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Projects Section */
+    section {
+      padding: 3rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .project-item {
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 1.5rem;
+    }
+
+    .project-header {
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .project-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    /* Publications Section */
+    .publications-list {
+      list-style: none;
+    }
+
+    .publication-item {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .publication-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .publication-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .publication-authors {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .publication-venue {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .publication-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .publication-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .publication-links a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Achievements */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .achievement-item {
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 1.5rem;
+    }
+
+    .achievement-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .achievement-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-list {
+      list-style: none;
+    }
+
+    .contact-list li {
+      margin-bottom: 1rem;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .contact-list a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .achievements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, my new site!</h1>
-  <p>Goodbye Adobe 👋</p>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">AYSE OKATAN</div>
+      <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#publications">PUBLICATIONS</a></li>
+        <li><a href="#education">LEADERSHIP</a></li>
+        <li><a href="#achievements">AWARDS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero/Resume Header Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-header">
+        <h1 class="hero-name">AYSE OKATAN</h1>
+        <p class="hero-title">Electrical Engineering Student | Embry-Riddle Aeronautical University</p>
+        <div class="contact-info">
+          <span>(413) 667-7093</span>
+          <a href="mailto:okatana@my.erau.edu">okatana@my.erau.edu</a>
+          <a href="https://linkedin.com/in/ayse-okatan">linkedin.com/in/ayse-okatan</a>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <div class="section">
+            <h2 class="section-title">Education</h2>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-header">
+                  <div class="timeline-title">Bachelor of Science in Electrical Engineering</div>
+                  <div class="timeline-meta">Expected May 2026 | Embry-Riddle Aeronautical University (ERAU), Daytona Beach, FL</div>
+                </div>
+                <div class="timeline-description">
+                  <ul>
+                    <li>Minor: Computer Science</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">Experience</h2>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-header">
+                  <div class="timeline-title">NSF REU — Cybersecurity on Unmanned Aerial Systems</div>
+                  <div class="timeline-meta">May 2024 - Aug 2024 | Research Intern, Daytona Beach, FL</div>
+                </div>
+                <div class="timeline-description">
+                  <ul>
+                    <li>Explored Transformer attention as implicit cryptographic keys in seq2seq architectures; evaluated cross-model decoder transfer</li>
+                    <li>Ran controlled trials demonstrating decoder incompatibility across identically configured but independently trained models</li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-header">
+                  <div class="timeline-title">Department Front Desk — Electrical Engineering & Computer Science (ERAU)</div>
+                  <div class="timeline-meta">Aug 2024 - Present</div>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-header">
+                  <div class="timeline-title">Outreach Manager — ERAU Volunteer Network</div>
+                  <div class="timeline-meta">Oct 2024 - Apr 2025 | Student Engagement & Student Union</div>
+                </div>
+                <div class="timeline-description">
+                  <ul>
+                    <li>Increased event engagement via targeted programming and campus-wide communications to 5,000+ students and staff</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="section-content" style="font-size: 13px;">
+              <p><strong>Programming:</strong> Python, C/C++, MATLAB, Java, Lua</p>
+              <p><strong>RF/EDA:</strong> Altium, KiCad, Ansys HFSS, Keysight ADS</p>
+              <p><strong>GNSS/DSP:</strong> Course-level exposure to GPS L1 C/A concepts (PN/Gold codes, acquisition theory); small lab simulations only</p>
+              <p><strong>Tooling:</strong> Git (GitHub/GitLab), Linux, shell, Azure DevOps, MobaXterm</p>
+              <p><strong>Productivity:</strong> MS Office, Teams, SharePoint</p>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">Publications</h2>
+            <div class="section-content" style="font-size: 13px; line-height: 1.6;">
+              <p><strong>2</strong> peer-reviewed papers</p>
+              <p>IEEE CARS 2025</p>
+              <p>See Publications section for details</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">Starlink-Based Navigation System for Fixed-Wing UAV</div>
+            <div class="project-meta">Fall 2025 - Spring 2026 | Senior Design</div>
+          </div>
+          <div class="project-description">
+            Focus on front-end and electrical requirements for a fixed-wing UAV. Integrating teammates' APIs into a React front-end; 
+            wiring telemetry, navigation, and status views.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">UAV</span>
+            <span class="tech-tag">Navigation</span>
+            <span class="tech-tag">Telemetry</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">Telemetry & Tracking RF Board (Sounding Rocket)</div>
+            <div class="project-meta">Aug 2025 - Present | IEEE Club Project</div>
+          </div>
+          <div class="project-description">
+            Dual-band front end at 1.575 GHz (L1 GNSS) and 915 MHz (ISM) on a compact 4-layer PCB with controlled-impedance routing. 
+            EM simulations (Ansys HFSS) and circuit co-sims (Keysight ADS) to size matching networks and verify antenna/feed transitions 
+            for design verification. Launched a design-for-manufacture checklist: stack-up, via fences, return-path integrity, and test 
+            points for S-parameter validation.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Altium</span>
+            <span class="tech-tag">Ansys HFSS</span>
+            <span class="tech-tag">Keysight ADS</span>
+            <span class="tech-tag">RF Design</span>
+            <span class="tech-tag">GNSS</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">SaLED — Speech & Language Editing Software</div>
+            <div class="project-meta">Feb 2024 - Jun 2024 | Research Assistant | Advisor: Dr. Liu Jianhua</div>
+          </div>
+          <div class="project-description">
+            Python toolchain integrating Whisper/Kaldi with LLM prompts for assisted speech editing. Built interactive dashboards 
+            (Plotly/Dash) and reproducible environments (Poetry).
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Whisper</span>
+            <span class="tech-tag">Kaldi</span>
+            <span class="tech-tag">LLM</span>
+            <span class="tech-tag">Plotly/Dash</span>
+            <span class="tech-tag">Poetry</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">Ambassador Bot</div>
+            <div class="project-meta">Apr 2024 | IEEE Club Project</div>
+          </div>
+          <div class="project-description">
+            Arduino + Python robotic assistant with NLP (TalkLLaMA) and TTS (ElevenLabs); sensor-driven gaze tracking and CRT mouth display.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Arduino</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">TTS</span>
+            <span class="tech-tag">Robotics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications Section -->
+  <section id="publications" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Publications</h2>
+      <ul class="publications-list">
+        <li class="publication-item">
+          <div class="publication-title">Seed-Induced Uniqueness in Transformer Models: Subspace Alignment Governs Subliminal Transfer</div>
+          <div class="publication-authors">Ayşe Selin Okatan, Mustafa İlhan Akbaş, Laxima Niure Kandel, Berker Peköz</div>
+          <div class="publication-venue">Proc. 2025 Cyber Awareness and Research Symp. (IEEE CARS 2025), Grand Forks, ND, Oct. 2025, pp. 6</div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/abs/2511.01023">arXiv:2511.01023</a>
+            <a href="https://doi.org/10.48550/arXiv.2511.01023">DOI: 10.48550/arXiv.2511.01023</a>
+          </div>
+        </li>
+
+        <li class="publication-item">
+          <div class="publication-title">Keys in the Weights: Transformer Authentication Using Model-Bound Latent Representations</div>
+          <div class="publication-authors">Ayşe S. Okatan, Mustafa İlhan Akbaş, Laxima Niure Kandel, Berker Peköz</div>
+          <div class="publication-venue">Proc. 2025 Cyber Awareness and Research Symp. (IEEE CARS 2025), Grand Forks, ND, Oct. 2025, pp. 6</div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/abs/2511.00973">arXiv:2511.00973</a>
+            <a href="https://doi.org/10.48550/arXiv.2511.00973">DOI: 10.48550/arXiv.2511.00973</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Leadership & Involvement</h2>
+      <div class="section-content">
+        <p><strong>IEEE</strong> — President/Chair (2025–2026)</p>
+        <p><strong>IEEE Women in Engineering</strong> — President/Chair (2025–2026)</p>
+        <p><strong>DEI Coalition</strong> — Director (2024–2025)</p>
+        <p><strong>Turkish Students Association</strong> — Founder & President (2022–2026)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Awards</h2>
+      <div class="achievements-grid">
+        <div class="achievement-item">
+          <div class="achievement-title">Lockheed Martin STEM & Vocational Scholarship</div>
+          <div class="achievement-description">2022–2026</div>
+        </div>
+        <div class="achievement-item">
+          <div class="achievement-title">EECS Department Service Award</div>
+          <div class="achievement-description">Spring 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <ul class="contact-list">
+            <li>Email: <a href="mailto:maverai@university.edu">maverai@university.edu</a></li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>GitHub: <a href="https://github.com/maverai">github.com/maverai</a></li>
+            <li>LinkedIn: <a href="https://linkedin.com/in/maverai">linkedin.com/in/maverai</a></li>
+            <li>Location: Available for opportunities worldwide</li>
+          </ul>
+        </div>
+        <form class="contact-form">
+          <input type="text" class="form-input" placeholder="Name" required>
+          <input type="email" class="form-input" placeholder="Email" required>
+          <input type="text" class="form-input" placeholder="Subject" required>
+          <textarea class="form-textarea" placeholder="Message" required></textarea>
+          <button type="submit" class="btn">SEND</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      © 2025 Ayşe Okatan | Last updated: 2025
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Form submission
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message. I will respond promptly.');
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>
