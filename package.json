@@ -1,0 +1,8 @@
+{
+  "name": "maverai-site",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {}
+}
