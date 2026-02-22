@@ -15,7 +15,8 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.stl': 'model/stl',
   '.obj': 'model/obj',
-  '.mtl': 'text/plain'
+  '.mtl': 'text/plain',
+  '.pdf': 'application/pdf'
 };
 
 const server = http.createServer((req, res) => {

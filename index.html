@@ -347,8 +347,21 @@
       font-size: 12px;
       color: var(--text-muted);
       font-style: italic;
+      margin-bottom: 0.25rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .publication-doi {
+      font-size: 12px;
+      color: var(--text-muted);
       margin-bottom: 0.75rem;
       font-family: 'IBM Plex Mono', monospace;
+    }
+    .publication-doi a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .publication-doi a:hover {
+      text-decoration: underline;
     }
 
     .publication-links {
@@ -420,6 +433,165 @@
 
     .contact-list a:hover {
       text-decoration: underline;
+    }
+
+    /* Resume section (viewable on site, expand/collapse) */
+    .resume-section-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .resume-toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .resume-toggle-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.75rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .resume-toggle-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .resume-toggle-btn[aria-expanded="false"]::before {
+      content: 'Expand \25BC';
+    }
+    .resume-toggle-btn[aria-expanded="true"]::before {
+      content: 'Collapse \25B2';
+    }
+    .resume-content {
+      overflow: hidden;
+      max-height: 6000px;
+      opacity: 1;
+      margin-top: 1.5rem;
+      transition: max-height 0.4s ease, opacity 0.25s ease, margin-top 0.3s ease;
+    }
+    #resume.resume-collapsed .resume-content {
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+    }
+    .resume-download {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.5rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .resume-download:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--text-primary);
+    }
+    .resume-doc {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .resume-doc .resume-name {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .resume-doc .resume-contact {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .resume-doc .resume-contact a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .resume-doc .resume-contact a:hover {
+      color: var(--accent);
+    }
+    .resume-doc .resume-sec {
+      margin-bottom: 1.25rem;
+    }
+    .resume-doc .resume-sec-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .resume-doc .resume-role {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+    .resume-doc .resume-role-title {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .resume-doc .resume-role-meta {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .resume-doc .resume-list {
+      margin: 0.25rem 0 1rem 1.25rem;
+      padding: 0;
+    }
+    .resume-doc .resume-list li {
+      margin-bottom: 0.2rem;
+    }
+    .resume-doc .resume-skills table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .resume-doc .resume-skills th {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding: 0.25rem 0.5rem 0.25rem 0;
+      vertical-align: top;
+      width: 120px;
+    }
+    .resume-doc .resume-skills td {
+      padding: 0.25rem 0;
+    }
+    .resume-doc .resume-inline p {
+      margin: 0.25rem 0;
+    }
+    .resume-doc .resume-twocol {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 2rem;
+    }
+    @media (max-width: 640px) {
+      .resume-doc .resume-twocol {
+        grid-template-columns: 1fr;
+      }
     }
 
     .contact-form {
@@ -688,6 +860,7 @@
       <div class="logo">AYSE OKATAN</div>
       <ul class="nav-links">
         <li><a href="#home">HOME</a></li>
+        <li><a href="#resume">RESUME</a></li>
         <li><a href="#projects">PROJECTS</a></li>
         <li><a href="#publications">PUBLICATIONS</a></li>
         <li><a href="#education">LEADERSHIP</a></li>
@@ -792,6 +965,145 @@
     </div>
   </section>
 
+  <!-- Resume (full view, expand/collapse) -->
+  <section id="resume" class="resume-collapsed" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="resume-section-bar">
+        <h2 class="section-title" style="margin-bottom:0;">Resume</h2>
+        <div class="resume-toggle-wrap">
+          <button type="button" class="resume-toggle-btn" id="resume-toggle" aria-expanded="false" aria-controls="resume-content"></button>
+          <a href="assets/docs/resume.pdf" class="resume-download" download>Download PDF</a>
+        </div>
+      </div>
+      <div class="resume-content" id="resume-content">
+      <div class="resume-doc">
+        <h1 class="resume-name">Ayşe S. Okatan</h1>
+        <div class="resume-contact">
+          <a href="mailto:okatana@my.erau.edu">okatana@my.erau.edu</a> &nbsp;|&nbsp;
+          <a href="tel:+14136677093">(413) 667-7093</a> &nbsp;|&nbsp;
+          <a href="https://www.linkedin.com/in/ayse-okatan" target="_blank" rel="noopener">linkedin.com/in/ayse-okatan</a>
+        </div>
+
+        <div class="resume-sec">
+          <h3 class="resume-sec-title">Education</h3>
+          <div class="resume-role">
+            <span class="resume-role-title">Embry–Riddle Aeronautical University (ERAU), Daytona Beach, FL</span>
+            <span class="resume-role-meta">Expected May 2026</span>
+          </div>
+          <p>B.S. in Electrical Engineering &nbsp;&nbsp; Minor: Computer Science</p>
+        </div>
+
+        <div class="resume-sec resume-skills">
+          <h3 class="resume-sec-title">Technical Skills</h3>
+          <table>
+            <tr><th>Programming</th><td>Python, C/C++, MATLAB, Java, Lua</td></tr>
+            <tr><th>RF/EDA</th><td>Altium, KiCad, Ansys HFSS, Keysight ADS</td></tr>
+            <tr><th>GNSS/DSP</th><td>Course-level GPS L1 C/A (PN/Gold codes, acquisition theory); lab simulations</td></tr>
+            <tr><th>Tooling</th><td>Git (GitHub/GitLab), Linux, shell, Azure DevOps, MobaXterm</td></tr>
+            <tr><th>Productivity</th><td>MS Office, Teams, SharePoint</td></tr>
+          </table>
+        </div>
+
+        <div class="resume-sec">
+          <h3 class="resume-sec-title">Publications</h3>
+          <p>A. S. Okatan, M. İ. Akbaş, L. N. Kandel, B. Peköz, &quot;Seed-Induced Uniqueness in Transformer Models: Subspace Alignment Governs Subliminal Transfer,&quot; 2025 Cyber Awareness and Research Symposium (CARS), Grand Forks, ND, USA, 2025, pp. 1-6, doi: 10.1109/CARS67163.2025.11337559.</p>
+          <p>A. S. Okatan, M. İ. Akbaş, L. N. Kandel, B. Peköz, &quot;Keys in the Weights: Transformer Authentication Using Model-Bound Latent Representations,&quot; 2025 Cyber Awareness and Research Symposium (CARS), Grand Forks, ND, USA, 2025, pp. 1-6, doi: 10.1109/CARS67163.2025.11337776.</p>
+        </div>
+
+        <div class="resume-sec">
+          <h3 class="resume-sec-title">Project Experience</h3>
+          <div class="resume-role">
+            <span class="resume-role-title">Starlink-Based Navigation System for Fixed-Wing UAV</span>
+            <span class="resume-role-meta">Fall 2025–Spring 2026</span>
+          </div>
+          <p><em>Senior Design</em></p>
+          <ul class="resume-list">
+            <li>Front-end and electrical requirements; integrating teammates' APIs into a React front-end; telemetry, navigation, and status views.</li>
+          </ul>
+
+          <div class="resume-role">
+            <span class="resume-role-title">Telemetry &amp; Tracking RF Board (Sounding Rocket)</span>
+            <span class="resume-role-meta">Aug 2025–Present</span>
+          </div>
+          <p><em>IEEE Club Project</em></p>
+          <ul class="resume-list">
+            <li>Dual-band front end at 1.575 GHz (L1 GNSS) and 915 MHz (ISM) on a 4-layer PCB with controlled-impedance routing.</li>
+            <li>EM simulations (Ansys HFSS) and co-sims (Keysight ADS); design-for-manufacture checklist and S-parameter test points.</li>
+          </ul>
+
+          <div class="resume-role">
+            <span class="resume-role-title">SaLED — Speech &amp; Language Editing Software</span>
+            <span class="resume-role-meta">Feb 2024–Jun 2024</span>
+          </div>
+          <p><em>Research Assistant, Advisor: Dr. Liu Jianhua</em></p>
+          <ul class="resume-list">
+            <li>Python toolchain: Whisper/Kaldi with LLM prompts; Plotly/Dash dashboards; Poetry for reproducible environments.</li>
+          </ul>
+
+          <div class="resume-role">
+            <span class="resume-role-title">Ambassador Bot</span>
+            <span class="resume-role-meta">Apr 2024</span>
+          </div>
+          <p><em>IEEE Club Project</em></p>
+          <ul class="resume-list">
+            <li>Arduino + Python robotic assistant: TalkLLaMA (NLP), ElevenLabs (TTS), sensor-driven gaze tracking, CRT mouth display.</li>
+          </ul>
+        </div>
+
+        <div class="resume-sec">
+          <h3 class="resume-sec-title">Experience</h3>
+          <div class="resume-role">
+            <span class="resume-role-title">NSF REU — Cybersecurity on Unmanned Aerial Systems</span>
+            <span class="resume-role-meta">May 2024–Aug 2024</span>
+          </div>
+          <p><em>Research Intern, Daytona Beach, FL</em></p>
+          <ul class="resume-list">
+            <li>Transformer attention as implicit cryptographic keys; cross-model decoder transfer and controlled trials on decoder incompatibility.</li>
+          </ul>
+
+          <div class="resume-role">
+            <span class="resume-role-title">Department Front Desk — EECS (ERAU)</span>
+            <span class="resume-role-meta">Aug 2024–Present</span>
+          </div>
+
+          <div class="resume-role">
+            <span class="resume-role-title">Outreach Manager — ERAU Volunteer Network</span>
+            <span class="resume-role-meta">Oct 2024–Apr 2025</span>
+          </div>
+          <p><em>Student Engagement &amp; Student Union</em></p>
+          <ul class="resume-list">
+            <li>Increased engagement via targeted programming and communications to 5,000+ students and staff.</li>
+          </ul>
+        </div>
+
+        <div class="resume-sec resume-inline">
+          <h3 class="resume-sec-title">Awards</h3>
+          <p>Lockheed Martin STEM &amp; Vocational Scholarship (2022–2026) &nbsp;|&nbsp; EECS Department Service Award (Spring 2025)</p>
+        </div>
+
+        <div class="resume-sec">
+          <h3 class="resume-sec-title">Leadership &amp; Involvement</h3>
+          <div class="resume-twocol">
+            <ul class="resume-list">
+              <li>IEEE — President/Chair (2025–2026)</li>
+              <li>IEEE Women in Engineering — President/Chair (2025–2026)</li>
+            </ul>
+            <ul class="resume-list">
+              <li>DEI Coalition — Director (2024–2025)</li>
+              <li>Turkish Students Association — Founder &amp; President (2022–2026)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-sec resume-inline">
+          <h3 class="resume-sec-title">Languages</h3>
+          <p>Turkish (Native) &nbsp;|&nbsp; Spanish (High-school level) &nbsp;|&nbsp; Indonesian (Beginner)</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section id="projects">
     <div class="container">
@@ -875,7 +1187,7 @@
         </div>
       </div>
     </div>
-  </section>s
+  </section>
 
   <!-- Publications Section -->
   <section id="publications" style="background: var(--bg-secondary);">
@@ -884,21 +1196,25 @@
       <ul class="publications-list">
         <li class="publication-item">
           <div class="publication-title">Seed-Induced Uniqueness in Transformer Models: Subspace Alignment Governs Subliminal Transfer</div>
-          <div class="publication-authors">Ayşe Selin Okatan, Mustafa İlhan Akbaş, Laxima Niure Kandel, Berker Peköz</div>
-          <div class="publication-venue">Proc. 2025 Cyber Awareness and Research Symp. (IEEE CARS 2025), Grand Forks, ND, Oct. 2025, pp. 6</div>
+          <div class="publication-authors">A. S. Okatan, M. İ. Akbaş, L. N. Kandel, B. Peköz</div>
+          <div class="publication-venue">2025 Cyber Awareness and Research Symposium (CARS), Grand Forks, ND, USA, 2025, pp. 1-6</div>
+          <div class="publication-doi">DOI: <a href="https://doi.org/10.1109/CARS67163.2025.11337559" target="_blank" rel="noopener">10.1109/CARS67163.2025.11337559</a></div>
           <div class="publication-links">
-            <a href="https://arxiv.org/abs/2511.01023">arXiv:2511.01023</a>
-            <a href="https://doi.org/10.48550/arXiv.2511.01023">DOI: 10.48550/arXiv.2511.01023</a>
+            <a href="https://ieeexplore.ieee.org/document/11337559" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a href="https://doi.org/10.1109/CARS67163.2025.11337559" target="_blank" rel="noopener">DOI</a>
+            <a href="https://arxiv.org/abs/2511.01023" target="_blank" rel="noopener">arXiv</a>
           </div>
         </li>
 
         <li class="publication-item">
           <div class="publication-title">Keys in the Weights: Transformer Authentication Using Model-Bound Latent Representations</div>
-          <div class="publication-authors">Ayşe S. Okatan, Mustafa İlhan Akbaş, Laxima Niure Kandel, Berker Peköz</div>
-          <div class="publication-venue">Proc. 2025 Cyber Awareness and Research Symp. (IEEE CARS 2025), Grand Forks, ND, Oct. 2025, pp. 6</div>
+          <div class="publication-authors">A. S. Okatan, M. İ. Akbaş, L. N. Kandel, B. Peköz</div>
+          <div class="publication-venue">2025 Cyber Awareness and Research Symposium (CARS), Grand Forks, ND, USA, 2025, pp. 1-6</div>
+          <div class="publication-doi">DOI: <a href="https://doi.org/10.1109/CARS67163.2025.11337776" target="_blank" rel="noopener">10.1109/CARS67163.2025.11337776</a></div>
           <div class="publication-links">
-            <a href="https://arxiv.org/abs/2511.00973">arXiv:2511.00973</a>
-            <a href="https://doi.org/10.48550/arXiv.2511.00973">DOI: 10.48550/arXiv.2511.00973</a>
+            <a href="https://ieeexplore.ieee.org/document/11337776" target="_blank" rel="noopener">IEEE Xplore</a>
+            <a href="https://doi.org/10.1109/CARS67163.2025.11337776" target="_blank" rel="noopener">DOI</a>
+            <a href="https://arxiv.org/abs/2511.00973" target="_blank" rel="noopener">arXiv</a>
           </div>
         </li>
       </ul>
@@ -942,11 +1258,10 @@
       <div class="contact-grid">
         <div>
           <ul class="contact-list">
-            <li>Email: <a href="mailto:maverai@university.edu">maverai@university.edu</a></li>
-            <li>Phone: +1 (555) 123-4567</li>
-            <li>GitHub: <a href="https://github.com/maverai">github.com/maverai</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com/in/maverai">linkedin.com/in/maverai</a></li>
-            <li>Location: Available for opportunities worldwide</li>
+            <li>Email: <a href="mailto:okatana@my.erau.edu">okatana@my.erau.edu</a></li>
+            <li>Phone: <a href="tel:+14136677093">(413) 667-7093</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/ayse-okatan" target="_blank" rel="noopener">linkedin.com/in/ayse-okatan</a></li>
+            <li>Location: Daytona Beach, FL · Open to opportunities</li>
           </ul>
         </div>
         <form class="contact-form">
@@ -1034,6 +1349,18 @@
       alert('Thank you for your message. I will respond promptly.');
       e.target.reset();
     });
+
+    // Resume section expand/collapse
+    (function () {
+      var btn = document.getElementById('resume-toggle');
+      var section = document.getElementById('resume');
+      if (btn && section) {
+        btn.addEventListener('click', function () {
+          section.classList.toggle('resume-collapsed');
+          btn.setAttribute('aria-expanded', !section.classList.contains('resume-collapsed'));
+        });
+      }
+    })();
 
     // 3D PCB Viewer (supports .stl and .obj)
     (function () {
