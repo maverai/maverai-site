@@ -2,8 +2,7 @@
   "name": "maverai-site",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "build-resume": "node scripts/build-resume-pdf.js"
+    "start": "node server.js"
   },
   "devDependencies": {}
 }
