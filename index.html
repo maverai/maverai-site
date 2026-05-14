@@ -866,6 +866,59 @@
       outline: none;
       border-color: var(--accent);
     }
+
+    /* PDF Viewer Modal */
+    .modal-pdf {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      max-width: 95vw;
+      max-height: 95vh;
+      width: 1000px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    .modal-pdf-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--text-primary);
+      gap: 1rem;
+    }
+    .modal-pdf-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .modal-pdf-actions a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-pdf-actions a:hover {
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+    }
+    .modal-pdf-body {
+      flex: 1;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .modal-pdf-body iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -905,12 +958,18 @@
             <ul class="timeline">
               <li class="timeline-item">
                 <div class="timeline-header">
+                  <div class="timeline-title">Master of Science in Electrical and Computer Engineering</div>
+                  <div class="timeline-meta">Expected May 2028 | Embry-Riddle Aeronautical University (ERAU), Daytona Beach, FL</div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-header">
                   <div class="timeline-title">Bachelor of Science in Electrical Engineering</div>
-                  <div class="timeline-meta">Expected May 2026 | Embry-Riddle Aeronautical University (ERAU), Daytona Beach, FL</div>
+                  <div class="timeline-meta">Graduated May 5, 2026 | Embry-Riddle Aeronautical University (ERAU), Daytona Beach, FL</div>
                 </div>
                 <div class="timeline-description">
                   <ul>
-                    <li>Minor: Computer Science</li>
+                    <li>Minor: Computer Science (Graduated May 5, 2026)</li>
                   </ul>
                 </div>
               </li>
@@ -927,16 +986,22 @@
                 </div>
                 <div class="timeline-description">
                   <ul>
-                    <li>Explored Transformer attention as implicit cryptographic keys in seq2seq architectures; evaluated cross-model decoder transfer</li>
-                    <li>Ran controlled trials demonstrating decoder incompatibility across identically configured but independently trained models</li>
+                    <li>Investigated whether Transformer latent structure can serve as an implicit identity signal or cryptographic primitive in seq2seq model families</li>
+                    <li>Designed and executed controlled experiments evaluating cross-model decoder transfer, seed-induced uniqueness, and incompatibility across identically configured but independently trained models</li>
+                    <li>Contributed to the research program that resulted in two IEEE CARS 2025 publications and ongoing work on model-to-model authentication protocols</li>
                   </ul>
                 </div>
               </li>
 
               <li class="timeline-item">
                 <div class="timeline-header">
-                  <div class="timeline-title">Department Front Desk — Electrical Engineering & Computer Science (ERAU)</div>
-                  <div class="timeline-meta">Aug 2024 - Present</div>
+                  <div class="timeline-title">Department Front Desk — Electrical Engineering & Computer Science</div>
+                  <div class="timeline-meta">Aug 2024 - Present | ERAU</div>
+                </div>
+                <div class="timeline-description">
+                  <ul>
+                    <li>Provide front-office support for students, faculty, and visitors while coordinating departmental communication and administrative workflows</li>
+                  </ul>
                 </div>
               </li>
 
@@ -947,7 +1012,9 @@
                 </div>
                 <div class="timeline-description">
                   <ul>
-                    <li>Increased event engagement via targeted programming and campus-wide communications to 5,000+ students and staff</li>
+                    <li>Managed external email communication with nonprofit organizations to coordinate events, partnerships, and information exchange</li>
+                    <li>Maintained the organization's website and supported dissemination of event and program information to the campus community</li>
+                    <li>Prepared and distributed campus-wide email communications promoting volunteer opportunities, events, and organizational updates</li>
                   </ul>
                 </div>
               </li>
@@ -988,6 +1055,8 @@
         <div class="resume-toggle-wrap">
           <button type="button" class="resume-toggle-btn" id="resume-toggle" aria-expanded="false" aria-controls="resume-content"></button>
           <a href="assets/docs/ayse-okatan-resume-maverai.pdf" class="resume-download" download>Download PDF</a>
+          <a href="#" class="resume-download open-pdf" data-pdf="assets/docs/resume-okatan-ayse-long.pdf" data-title="Ayşe Okatan — Long Resume (Full Experience)">View Long Resume</a>
+          <a href="assets/docs/resume-okatan-ayse-long.pdf" class="resume-download" download>Download Long</a>
         </div>
       </div>
       <div class="resume-content" id="resume-content">
@@ -1096,7 +1165,7 @@
 
         <div class="resume-sec resume-inline">
           <h3 class="resume-sec-title">Awards</h3>
-          <p>Lockheed Martin STEM &amp; Vocational Scholarship (2022–2026) &nbsp;|&nbsp; EECS Department Service Award (Spring 2025)</p>
+          <p>Lockheed Martin STEM &amp; Vocational Scholarship (2022–2026) &nbsp;|&nbsp; EECS Department Service Award (Spring 2025, Spring 2026)</p>
         </div>
 
         <div class="resume-sec">
@@ -1130,10 +1199,10 @@
         <div class="project-item">
           <div class="project-header">
             <div class="project-title">Starlink-Based Navigation System for Fixed-Wing UAV</div>
-            <div class="project-meta">Fall 2025 - Spring 2026 | Senior Design</div>
+            <div class="project-meta">Fall 2025 - Spring 2026 | Senior Design | Presented at NCUR (Apr 2026), FURC, ERAU Discovery Day</div>
           </div>
           <div class="project-description">
-            Focus on front-end and electrical requirements for a fixed-wing UAV. Integrating teammates' APIs into a React front-end; 
+            Focus on front-end and electrical requirements for a fixed-wing UAV. Integrating teammates' APIs into a React front-end;
             wiring telemetry, navigation, and status views.
           </div>
           <div class="project-tech">
@@ -1141,6 +1210,10 @@
             <span class="tech-tag">UAV</span>
             <span class="tech-tag">Navigation</span>
             <span class="tech-tag">Telemetry</span>
+          </div>
+          <div class="view-3d-links">
+            <a href="#" class="view-3d-link open-pdf" data-pdf="assets/docs/sabr_poster_v2-1-1.pdf" data-title="Starlink UAV Navigation — Conference Poster (NCUR · FURC · ERAU Discovery Day)">View poster</a>
+            <a href="https://commons.erau.edu/db-srs/2025/poster-session/108/" class="view-3d-link" target="_blank" rel="noopener">ERAU Scholarly Commons ↗</a>
           </div>
         </div>
 
@@ -1165,6 +1238,75 @@
           <div class="view-3d-links">
             <a href="#" class="view-3d-link" id="open-pcb-3d" aria-label="View 3D PCB model">View 3D model</a>
             <a href="#" class="view-3d-link" id="open-pcb-2d" aria-label="View board layers">View board layers (Gerber)</a>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">Transformer Subspace Authentication — Continued Research</div>
+            <div class="project-meta">2024 - Present | Advisor: Dr. Berker Peköz</div>
+          </div>
+          <div class="project-description">
+            Continued research extending the published work on seed-induced subspace alignment and model-bound latent authentication
+            in Transformer architectures. Investigates how attention subspaces can serve as implicit, weight-bound cryptographic
+            identifiers for cross-model decoder transfer and authentication. See the Publications section for the two CARS 2025 papers
+            that grew out of this line of work.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Transformers</span>
+            <span class="tech-tag">Cryptography</span>
+            <span class="tech-tag">UAS Security</span>
+          </div>
+          <div class="view-3d-links">
+            <a href="#" class="view-3d-link open-pdf" data-pdf="assets/docs/ayse-poster-subspace-auth.pdf" data-title="Transformer Subspace Authentication — Research Poster">View poster</a>
+            <a href="https://commons.erau.edu/db-srs/2025/poster-session/60/" class="view-3d-link" target="_blank" rel="noopener">ERAU Scholarly Commons ↗</a>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">Seed-Induced Uniqueness in Transformer Models</div>
+            <div class="project-meta">May 2024 - Aug 2024 | <a href="https://sites.google.com/view/nsf-reu-erau/home" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">NSF REU – Cybersecurity on UAS (ERAU)</a> | Advisor: Dr. Berker Peköz</div>
+          </div>
+          <div class="project-description">
+            Investigated how random-seed initialization induces unique attention subspaces in identically configured Transformer
+            decoders. Demonstrated through controlled trials that subspace alignment governs whether subliminal information transfers
+            between independently trained models — formalizing weight-bound representational uniqueness. Funded by the NSF Research
+            Experiences for Undergraduates program in Cybersecurity on Unmanned Aerial Systems at Embry-Riddle.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Transformers</span>
+            <span class="tech-tag">Subspace Analysis</span>
+            <span class="tech-tag">UAS Security</span>
+          </div>
+          <div class="view-3d-links">
+            <a href="https://ieeexplore.ieee.org/document/11337559" class="view-3d-link" target="_blank" rel="noopener">IEEE Xplore ↗</a>
+            <a href="https://arxiv.org/abs/2511.01023" class="view-3d-link" target="_blank" rel="noopener">arXiv ↗</a>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title">Keys in the Weights: Transformer Authentication</div>
+            <div class="project-meta">May 2024 - Aug 2024 | <a href="https://sites.google.com/view/nsf-reu-erau/home" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">NSF REU – Cybersecurity on UAS (ERAU)</a> | Advisor: Dr. Berker Peköz</div>
+          </div>
+          <div class="project-description">
+            Explored Transformer attention as an implicit cryptographic key in seq2seq architectures: cross-model decoder transfer
+            fails because latent representations are bound to a model's own weights. Built the authentication framework around this
+            model-bound binding. Funded by the NSF Research Experiences for Undergraduates program in Cybersecurity on Unmanned
+            Aerial Systems at Embry-Riddle.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Transformers</span>
+            <span class="tech-tag">Cryptography</span>
+            <span class="tech-tag">UAS Security</span>
+          </div>
+          <div class="view-3d-links">
+            <a href="https://ieeexplore.ieee.org/document/11337776" class="view-3d-link" target="_blank" rel="noopener">IEEE Xplore ↗</a>
+            <a href="https://arxiv.org/abs/2511.00973" class="view-3d-link" target="_blank" rel="noopener">arXiv ↗</a>
           </div>
         </div>
 
@@ -1263,7 +1405,7 @@
         </div>
         <div class="achievement-item">
           <div class="achievement-title">EECS Department Service Award</div>
-          <div class="achievement-description">Spring 2025</div>
+          <div class="achievement-description">Spring 2025, Spring 2026</div>
         </div>
       </div>
     </div>
@@ -1334,6 +1476,23 @@
     </div>
   </div>
 
+  <!-- PDF Viewer Modal (posters, long resume) -->
+  <div class="modal-overlay" id="pdf-modal" aria-hidden="true">
+    <div class="modal-pdf">
+      <div class="modal-pdf-header">
+        <span id="pdf-modal-title">Document</span>
+        <div class="modal-pdf-actions">
+          <a id="pdf-modal-open-tab" href="#" target="_blank" rel="noopener">Open in new tab</a>
+          <a id="pdf-modal-download" href="#" download>Download</a>
+          <button type="button" class="modal-3d-close" id="close-pdf" aria-label="Close">×</button>
+        </div>
+      </div>
+      <div class="modal-pdf-body">
+        <iframe id="pdf-modal-iframe" title="PDF Viewer" allow="fullscreen"></iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -1350,6 +1509,7 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         if (this.id === 'open-pcb-3d' || this.id === 'open-pcb-2d') { e.preventDefault(); return; }
+        if (this.classList && this.classList.contains('open-pdf')) { e.preventDefault(); return; }
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -1367,6 +1527,46 @@
       alert('Thank you for your message. I will respond promptly.');
       e.target.reset();
     });
+
+    // Generic PDF viewer modal (posters, long resume)
+    (function () {
+      var modal = document.getElementById('pdf-modal');
+      if (!modal) return;
+      var iframe = document.getElementById('pdf-modal-iframe');
+      var titleEl = document.getElementById('pdf-modal-title');
+      var openTab = document.getElementById('pdf-modal-open-tab');
+      var dl = document.getElementById('pdf-modal-download');
+
+      function openPdf(url, title) {
+        iframe.src = url;
+        titleEl.textContent = title || 'Document';
+        openTab.href = url;
+        dl.href = url;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closePdf() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        iframe.src = '';
+      }
+
+      document.querySelectorAll('.open-pdf').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          openPdf(el.dataset.pdf, el.dataset.title);
+        });
+      });
+
+      document.getElementById('close-pdf').addEventListener('click', closePdf);
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closePdf();
+      });
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closePdf();
+      });
+    })();
 
     // Resume section expand/collapse
     (function () {
